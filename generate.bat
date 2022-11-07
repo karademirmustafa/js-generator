@@ -1,0 +1,1 @@
+node generate/ui.js %1
