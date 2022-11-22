@@ -149,5 +149,7 @@ generateApp(appName);
 generateIndexHTML(appName);
 generateGitignore();
 generateEnv();
+generateDockerfile();
+generateDockerignore();
 fs.mkdirSync(appName+"/ui/.nginx");
 generateNginx();

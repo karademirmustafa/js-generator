@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 const data=`
 version: "3.8"
 services:
@@ -5,8 +7,6 @@ services:
         build: ui
         ports:
             - 80:80
-        depends_on:
-            - app
     backend:
         build: backend
         ports:
