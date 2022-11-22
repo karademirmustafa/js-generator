@@ -10,6 +10,6 @@ services:
     backend:
         build: backend
         ports:
-            - 3000:3000
+            - 5000:5000
 `;
 fs.writeFileSync("docker-compose.yml",data);

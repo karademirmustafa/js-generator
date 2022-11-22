@@ -72,7 +72,7 @@ yarn-error.log*`;
 const generateEnv=()=>
 {
 	const data=`
-REACT_APP_BACKEND_URL=http://localhost:3000`;
+REACT_APP_BACKEND_URL=http://localhost:5000`;
 	fs.writeFileSync(appName+"/ui/.env",data);
 }
 const generateDockerfile=()=>
