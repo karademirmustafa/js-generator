@@ -145,15 +145,15 @@ const generatePackage=()=>
 {
 	const data=`
 {
-  "name": "url-shortener",
+  "name": "`+appName+`",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.24.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^6.2.1",
-    "react-scripts": "5.0.0",
+    "axios": "^1.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.3",
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
