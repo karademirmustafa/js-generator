@@ -1,6 +1,7 @@
 const fs = require("fs");
+const appName=process.argv[2];
 
-const generateIndex=(appName)=>
+const generateIndex=()=>
 {
 	const data=`
 import React from 'react';
@@ -13,9 +14,9 @@ root.render(
     <App />
   </React.StrictMode>
 );`;
-	fs.writeFileSync(appName+"/ui/src/index.js",data);
+	fs.writeFileSync("src/index.js",data);
 }
-const generateApp=(appName)=>
+const generateApp=()=>
 {
 	const data=`
 export default function App() {
@@ -25,9 +26,9 @@ export default function App() {
     </div>
   );
 }`;
-	fs.writeFileSync(appName+"/ui/src/app.js",data);
+	fs.writeFileSync("src/app.js",data);
 }
-const generateIndexHTML=(appName)=>
+const generateIndexHTML=()=>
 {
 	const data=`
 <!DOCTYPE html>
@@ -41,7 +42,7 @@ const generateIndexHTML=(appName)=>
     <div id="root"></div>
   </body>
 </html>`;
-	fs.writeFileSync(appName+"/ui/public/index.html",data);
+	fs.writeFileSync("public/index.html",data);
 }
 const generateGitignore=()=>
 {
@@ -67,13 +68,13 @@ const generateGitignore=()=>
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*`;
-	fs.writeFileSync(appName+"/ui/.gitignore",data);
+	fs.writeFileSync(".gitignore",data);
 }
 const generateEnv=()=>
 {
 	const data=`
 REACT_APP_BACKEND_URL=http://localhost:5000`;
-	fs.writeFileSync(appName+"/ui/.env",data);
+	fs.writeFileSync(".env",data);
 }
 const generateDockerfile=()=>
 {
@@ -91,7 +92,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY .nginx/nginx.conf /etc/nginx/conf.d
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]`;
-	fs.writeFileSync(appName+"/ui/Dockerfile",data);
+	fs.writeFileSync("Dockerfile",data);
 }
 const generateNginx=()=>
 {
@@ -104,7 +105,7 @@ server {
 		try_files $uri $uri/ /index.html;
 	}
 }`;
-	fs.writeFileSync(appName+"/ui/.nginx/nginx.conf",data);
+	fs.writeFileSync(".nginx/nginx.conf",data);
 }
 const generateDockerignore=()=>
 {
@@ -138,18 +139,64 @@ yarn-error.log*
 # Docker
 Dockerfile
 .dockerignore`;
-	fs.writeFileSync(appName+"/ui/.dockerignore",data);
+	fs.writeFileSync(".dockerignore",data);
 }
-const appName=process.argv[2];
-fs.mkdirSync(appName+"/ui/");
-fs.mkdirSync(appName+"/ui/src");
-fs.mkdirSync(appName+"/ui/public");
-generateIndex(appName);
-generateApp(appName);
-generateIndexHTML(appName);
+const generatePackage=()=>
+{
+	const data=`
+{
+  "name": "url-shortener",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.24.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "5.0.0",
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+
+`;
+	fs.writeFileSync("package.json",data);
+}
+const createFolder=name=>
+{
+	fs.mkdirSync(name);
+}
+createFolder("src");
+createFolder("public");
+createFolder(".nginx");
+generateIndex();
+generateApp();
+generateIndexHTML();
 generateGitignore();
 generateEnv();
 generateDockerfile();
 generateDockerignore();
-fs.mkdirSync(appName+"/ui/.nginx");
 generateNginx();
+generatePackage();
