@@ -7,9 +7,5 @@ services:
         build: ui
         ports:
             - 80:80
-    backend:
-        build: backend
-        ports:
-            - 5000:5000
 `;
 fs.writeFileSync("docker-compose.yml",data);
