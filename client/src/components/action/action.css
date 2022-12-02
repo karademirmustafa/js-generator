@@ -1,0 +1,16 @@
+.action-container {
+  @apply flex items-center  justify-center
+   
+     fixed bottom-0  left-20 right-20
+     h-[90px]
+    bg-gradient-to-r from-slate-200 to-gray-200;
+}
+
+.action-button {
+    @apply
+    text-center text-2xl
+    text-gray-500
+    border outline-none border-black px-4  rounded
+    hover:bg-black hover:text-white
+
+}

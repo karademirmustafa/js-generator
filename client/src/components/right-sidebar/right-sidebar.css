@@ -1,0 +1,25 @@
+.lightbox {
+  @apply w-[75px] text-center 
+      flex flex-col justify-start fixed min-h-full my-5 
+        border-l items-center;
+}
+
+.light {
+  @apply py-5 
+        hover:text-blue-600;
+}
+
+.switch {
+    @apply 
+    space-y-0
+    border border-black rounded
+}
+
+.light-icon{
+    @apply
+    w-[30px]
+    block text-2xl text-center
+    border-b border-black  
+    hover:text-white hover:bg-black
+   
+}

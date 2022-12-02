@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sidebar-left {
+@apply  w-[75px] h-full 
+}
+
+.main{
+@apply w-full h-full min-h-screen max-w-full 
+}
+
+.sidebar-right {
+@apply w-[75px] h-full
+}
+
+.main-layout {
+@apply flex p-4 h-screen
+bg-gradient-to-b from-gray-50 to-gray-100 pb-10
+}
+
+.left {
+@apply flex-auto px-2
+}
+.right {
+@apply flex-auto border-l px-4
+}
+
+.title{
+    @apply text-xl border-b border-spacing-2 py-1 font-medium
+}
+.project {
+    @apply flex flex-col
+}

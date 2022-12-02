@@ -1,0 +1,11 @@
+
+.content {
+  @apply flex items-center justify-between
+    rounded border-b 
+  text-green-600
+  container  px-4 h-[120px];
+}
+
+.logo {
+  @apply px-8 text-4xl;
+}
