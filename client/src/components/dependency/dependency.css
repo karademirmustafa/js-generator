@@ -1,0 +1,46 @@
+.dependency-header{
+    @apply flex justify-between
+}
+
+.btn{
+@apply flex justify-around items-center gap-x-5 
+border-2 border-black outline-none cursor-pointer
+ px-4 py-2 text-center rounded-md
+ hover:bg-green-500 hover:text-white hover:border-green-300
+}
+
+
+.dependencies-list {
+    @apply  block  mt-4 
+}
+
+.dependency-item {
+    @apply hover:bg-green-500 border-b border-gray-300 
+}
+
+.dependency-name {
+    @apply text-xl font-semibold
+}
+.dependency-title{
+    @apply px-4 text-center uppercase text-white ml-5 font-normal text-lg
+    border border-orange-300  bg-orange-600
+}
+.dependency-version{
+    @apply text-base text-gray-500 
+    
+}
+.dependency-footer{
+   @apply flex justify-between
+}
+.dependency-desc{
+    @apply 
+    text-sm text-slate-600
+}
+
+.dependency-action{
+    @apply flex gap-x-3 mb-2
+}
+
+.dependency-icon{
+    @apply text-lg text-center px-3 border 
+}

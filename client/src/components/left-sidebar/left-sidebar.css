@@ -1,0 +1,22 @@
+.navigation{
+    @apply w-[75px] text-center 
+    flex flex-col justify-between fixed min-h-full my-5 
+    border-r items-center 
+}
+
+.navigation-menu {
+    @apply
+    py-5
+    hover:text-blue-600
+}
+
+.navigation-social {
+    @apply
+    py-12
+    space-y-5
+    justify-end
+}
+.icon{
+    @apply
+    block text-4xl text-center 
+}
