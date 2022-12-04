@@ -1,55 +1,39 @@
 import React from 'react'
 import "./dependency.css"
-function Dependency() {
-    return (
-        <>
-      <div className="dependency-header">
-       <h2 className="title">Dependencies</h2> 
-      <div className="btn"> <span className="text-center font-medium">Add Dependencies</span> <i class="fa-solid fa-magnifying-glass"></i></div>
-      </div> 
-      <div className="">
-        <ul className="dependencies-list">
-            <li className="dependency-item">
-                <strong className="dependency-name">Axios <span className="dependency-version">1.2.0</span><span className="dependency-title">dev dependencies</span></strong> 
-                
-                <div className="dependency-footer">
-                    <span className="dependency-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, numquam!</span>
-                <div className="dependency-action">
-                    <button className="dependency-icon border-blue-500 rounded text-white bg-blue-600"><i class="fa-solid fa-pen"/></button>
-                    <button className="dependency-icon border-red-500 rounded text-white bg-red-600"><i class="fa-solid fa-trash-can"/></button>
-                </div>
-                </div>
-                
-            </li>
-            <li className="dependency-item">
-                <strong className="dependency-name">Nodemon <span className="dependency-version">14.2.0</span><span className="dependency-title">dependency</span></strong> 
-                
-                <div className="dependency-footer">
-                    <span className="dependency-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, numquam!</span>
-                <div className="dependency-action">
-                    <button className="dependency-icon border-blue-500 rounded text-white bg-blue-600"><i class="fa-solid fa-pen"/></button>
-                    <button className="dependency-icon border-red-500 rounded text-white bg-red-600"><i class="fa-solid fa-trash-can"/></button>
-                </div>
-                </div>
-                
-            </li>
-            <li className="dependency-item">
-                <strong className="dependency-name">Express <span className="dependency-version">12.2.3</span><span className="dependency-title">dev dependencies</span></strong> 
-                
-                <div className="dependency-footer">
-                    <span className="dependency-desc">Tunçerella başarırsa başarılı bir başarı olmuş olabilir tunçerella!</span>
-                <div className="dependency-action">
-                    <button className="dependency-icon border-blue-500 rounded text-white bg-blue-600"><i class="fa-solid fa-pen"/></button>
-                    <button className="dependency-icon border-red-500 rounded text-white bg-red-600"><i class="fa-solid fa-trash-can"/></button>
-                </div>
-                </div>
-                
-            </li>
-           
-        </ul>
-      </div>
-      </> 
-    )
+function Dependency({selectedDependencies,setSelectedDependencies}) {
+	const removeDependency=(name)=>
+	{
+		setSelectedDependencies(selectedDependencies.filter(each=>each.name!=name));
+	};
+	return (
+		<>
+			<div className="dependency-header">
+				<h2 className="title">Dependencies</h2> 
+				<div className="btn">
+					<span className="text-center font-medium">Add Dependencies</span>
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</div>
+			</div> 
+			<div className="">
+				<ul className="dependencies-list">
+					{
+						selectedDependencies.map(each=>
+						<li key={each.name} className="dependency-item">
+							<strong className="dependency-name">{each.name} <span className="dependency-version">{each.version}</span><span className="dependency-title">{each.dev?"dev dependencies":"Dependency"}</span></strong> 
+							<div className="dependency-footer">
+								<span className="dependency-desc">{each.description}</span>
+								<div className="dependency-action">
+									<button className="dependency-icon border-blue-500 rounded text-white bg-blue-600"><i class="fa-solid fa-pen"/></button>
+									<button onClick={()=>removeDependency(each.name)} className="dependency-icon border-red-500 rounded text-white bg-red-600"><i class="fa-solid fa-trash-can"/></button>
+								</div>
+							</div>
+						</li>)
+					}
+					
+				</ul>
+			</div>
+		</> 
+	)
 }
 
 export default Dependency
