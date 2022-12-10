@@ -3,12 +3,12 @@ version: '3.1'
 services:
 
   backend:
-    build: server
+    image: karademirmustafa/js-generator-server 
     ports:
-      - 8080:5000
+      - 5000:5000
 
   frontend:
-    build: client
+    image: karademirmustafa/js-generator-client 
     ports:
       - 80:80
    
