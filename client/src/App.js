@@ -9,7 +9,7 @@ import {useState} from "react";
 
 function App() {
 	const [isDarkModeOn,setIsDarkModeOn]=useState(false);
-	const [selectedDependencies,setSelectedDependencies]=useState([{name:"Axios",version:"1.2.0",description:"Axios desc",dev:false},{name:"Nodemon",version:"14.2.0",description:"Nodemon desc",dev:true}])
+	const [selectedDependencies,setSelectedDependencies]=useState([{name:"Axios",version:"1.2.0",description:"Axios desc",dev:false},{name:"Nodemon",version:"14.2.0",description:"Nodemon desc",dev:true},{name:"Axios",version:"1.2.0",description:"Axios desc",dev:false},{name:"Axios",version:"1.2.0",description:"Axios desc",dev:false},{name:"Axios",version:"1.2.0",description:"Axios desc",dev:false},{name:"Axios",version:"1.2.0",description:"Axios desc",dev:false},{name:"Axios",version:"1.2.0",description:"Axios desc",dev:false},{name:"Axios",version:"1.2.0",description:"Axios desc",dev:false},{name:"Axios",version:"1.2.0",description:"Axios desc",dev:false},{name:"Axios",version:"1.2.0",description:"Axios desc",dev:false}])
 	return (
 		<div className="flex">
 			<div className="sidebar-left">
@@ -19,7 +19,7 @@ function App() {
 				<Header/>
 				<form>
 					<div className="main-layout">
-						<div className="left overflow-auto project">
+						<div className="left project">
 							<h2 className='title w-40'>Project </h2>
 							<ProjectSelect />
 							<h2 className='title w-40'>Project Details </h2>
