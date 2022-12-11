@@ -8,14 +8,15 @@ import Dependency from "./components/dependency/Dependency";
 import {useState} from "react"; 
 
 function App() {
+	const API_URL=process.env.REACT_APP_API;
 	const [isDarkModeOn,setIsDarkModeOn]=useState(false);
-	const [projectDetails,setProjectDetails]=useState({name:""});
+	const [projectDetails,setProjectDetails]=useState({name:"",description:"",version:"1.0"});
 	const [selectedDependencies,setSelectedDependencies]=useState([{name:"Axios",version:"1.2.0",description:"Axios desc",dev:false},{name:"Nodemon",version:"14.2.0",description:"Nodemon desc",dev:true}])
 	const onDownloadClick=()=>
 	{
-		console.log(process.env.REACT_APP_API);
+		const urlSearchParams=new URLSearchParams(projectDetails).toString();
 		const anchor = document.createElement('a');
-		anchor.href = process.env.REACT_APP_API+"react?name="+projectDetails.name;
+		anchor.href = API_URL+"react?"+urlSearchParams;
 		anchor.download = "";
 		document.body.appendChild(anchor);
 		anchor.click();
