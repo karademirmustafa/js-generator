@@ -11,7 +11,7 @@ function Dependency({selectedDependencies,setSelectedDependencies}) {
 				<h2 className="title">Dependencies</h2> 
 				<div className="btn">
 					<span className="text-center font-medium">Add Dependencies</span>
-					<i class="fa-solid fa-magnifying-glass"></i>
+					<i className="fa-solid fa-magnifying-glass"></i>
 				</div>
 			</div> 
 			<div className="">
@@ -23,8 +23,8 @@ function Dependency({selectedDependencies,setSelectedDependencies}) {
 							<div className="dependency-footer">
 								<span className="dependency-desc">{each.description}</span>
 								<div className="dependency-action">
-									<button className="dependency-icon border-blue-500 rounded text-white bg-blue-600"><i class="fa-solid fa-pen"/></button>
-									<button onClick={()=>removeDependency(each.name)} className="dependency-icon border-red-500 rounded text-white bg-red-600"><i class="fa-solid fa-trash-can"/></button>
+									<button className="dependency-icon border-blue-500 rounded text-white bg-blue-600"><i className="fa-solid fa-pen"/></button>
+									<button onClick={()=>removeDependency(each.name)} className="dependency-icon border-red-500 rounded text-white bg-red-600"><i className="fa-solid fa-trash-can"/></button>
 								</div>
 							</div>
 						</li>)
