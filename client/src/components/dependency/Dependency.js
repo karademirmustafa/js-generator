@@ -3,7 +3,7 @@ import "./dependency.css"
 function Dependency({selectedDependencies,setSelectedDependencies}) {
 	const removeDependency=(name)=>
 	{
-		setSelectedDependencies(selectedDependencies.filter(each=>each.name!=name));
+		setSelectedDependencies(selectedDependencies.filter(each=>each.name!==name));
 	};
 	return (
 		<>

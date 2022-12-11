@@ -4,22 +4,30 @@
         border-l items-center;
 }
 
-.light {
-  @apply py-5 
-        hover:text-blue-600;
-}
 
 .switch {
     @apply 
     space-y-0
     border border-black rounded
+    
 }
 
-.light-icon{
+.icon{
     @apply
     w-[30px]
     block text-2xl text-center
     border-b border-black  
-    hover:text-white hover:bg-black
    
+}
+
+.light{
+  @apply
+  hover:bg-black hover:text-white
+  
+}
+
+.dark{
+  @apply
+  bg-black text-white
+  hover:bg-white hover:text-black
 }
