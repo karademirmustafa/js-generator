@@ -24,7 +24,7 @@ module.exports = function createFrontend(appName, callback) {
   generateApp(FRONTEND_TMP_DIR);
   generateEnv(FRONTEND_TMP_DIR);
   generateGitignore(FRONTEND_TMP_DIR);
-  generatePackage(FRONTEND_TMP_DIR);
+  generatePackage(FRONTEND_TMP_DIR,appName);
   
   zipFolder(FRONTEND_TMP_DIR, appName + "-ui", callback);
   return appName + "-ui.zip";

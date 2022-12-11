@@ -1,9 +1,9 @@
 import React from 'react'
 import "./action.css";
-function Action() {
+function Action({onDownloadClick}) {
 	return (
 		<div className="action-container ">
-			<button className="action-button">Download</button>
+			<button onClick={onDownloadClick} className="action-button">Download</button>
 		</div>
 	)
 }
