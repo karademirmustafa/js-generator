@@ -8,9 +8,16 @@ app.use(express.json());
 const createFrontend = require("./services/frontend-service");
 
 app.get("/react", async (req,res)=> {
-const {name} = req.query;
-createFrontend(name ? name : "react-app",(file) => {res.download(path.join(__dirname, file))});
+const {name,version,description} = req.query;
+
+const projectDetails = {
+    name:name ? name : "react-app",
+    version:version ? version : "0.0.1",
+    description:description ? description : ""
+}
+createFrontend(projectDetails,(file) => {res.download(path.join(__dirname, file))});
 })
+
 
 
 //Server up , 5000 PORT
