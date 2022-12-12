@@ -78,20 +78,25 @@ REACT_APP_BACKEND_URL=http://localhost:5000`;
   fs.writeFileSync(`${path}/.env`, data);
 };
 
-const generatePackage = (path, appName, dependencies, devDependencies) => {
+const generatePackage = (
+  path,
+  projectDetails,
+  dependencies,
+  devDependencies
+) => {
   const data =
     `
 {
   "name": "` +
-    appName +
+    projectDetails?.name +
     `",
-  "version": "0.1.0",
-  "private": true,
+  "version": "` +
+    projectDetails.version +`",
+  "description": "`+
+    projectDetails.description +`",
   "dependencies": {
-    "axios": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1"
   },
   "scripts": {

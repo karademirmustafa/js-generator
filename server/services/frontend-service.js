@@ -12,7 +12,7 @@ const {
   createFolder,
 } = require("./frontend-generate-functions");
 
-module.exports = function createFrontend(appName, callback) {
+module.exports = function createFrontend(projectDetails, callback) {
   if (fs.existsSync(FRONTEND_TMP_DIR)) {
     fs.rmSync(FRONTEND_TMP_DIR, { recursive: true, force: true });
   }
@@ -20,12 +20,12 @@ module.exports = function createFrontend(appName, callback) {
   createFolder(`${FRONTEND_TMP_DIR}/src`);
   createFolder(`${FRONTEND_TMP_DIR}/public`);
   generateIndex(FRONTEND_TMP_DIR);
-  generateIndexHTML(FRONTEND_TMP_DIR, appName);
+  generateIndexHTML(FRONTEND_TMP_DIR, projectDetails?.name);
   generateApp(FRONTEND_TMP_DIR);
   generateEnv(FRONTEND_TMP_DIR);
   generateGitignore(FRONTEND_TMP_DIR);
-  generatePackage(FRONTEND_TMP_DIR,appName);
+  generatePackage(FRONTEND_TMP_DIR,projectDetails);
   
-  zipFolder(FRONTEND_TMP_DIR, appName + "-ui", callback);
-  return appName + "-ui.zip";
+  zipFolder(FRONTEND_TMP_DIR, projectDetails.name + "-ui", callback);
+  return projectDetails?.name + "-ui.zip";
 };

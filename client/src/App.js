@@ -6,6 +6,7 @@ import ProjectSelect from "./components/project/ProjectSelect";
 import ProjectInput from "./components/project/ProjectInput";
 import Dependency from "./components/dependency/Dependency";
 import {useState} from "react"; 
+import Modal from "./components/modal/Modal";
 
 function App() {
 	const API_URL=process.env.REACT_APP_API;
@@ -37,6 +38,7 @@ function App() {
 						<ProjectInput projectDetails={projectDetails} setProjectDetails={setProjectDetails}/> 
 					</div>
 					<div className="right overflow-auto">
+						<Modal/>
 						<Dependency selectedDependencies={selectedDependencies} setSelectedDependencies={setSelectedDependencies}/>
 					</div>
 				</div>
