@@ -5,8 +5,8 @@ function Dependency({selectedDependencies,onAddDependencyClick,onRemoveDependenc
 		<>
 			<div className="dependency-header">
 				<h2 className="title">Dependencies</h2> 
-				<div className="btn">
-					<span onClick={e=>onAddDependencyClick()} className="text-center font-medium">Add Dependencies</span>
+				<div className="btn" onClick={onAddDependencyClick}>
+					<span  className="text-center font-medium">Add Dependencies</span>
 					<i className="fa-solid fa-magnifying-glass"></i>
 				</div>
 			</div> 
