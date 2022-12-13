@@ -8,11 +8,37 @@ import Dependency from "./components/dependency/Dependency";
 import {useState} from "react"; 
 import Modal from "./components/modal/Modal";
 
-function App() {
+function App()
+{
 	const API_URL=process.env.REACT_APP_API;
 	const [isDarkModeOn,setIsDarkModeOn]=useState(false);
+	const [showModal, setShowModal]=useState(false);
 	const [projectDetails,setProjectDetails]=useState({name:"",description:"",version:"1.0"});
-	const [selectedDependencies,setSelectedDependencies]=useState([{name:"Axios",version:"1.2.0",description:"Axios desc",dev:false},{name:"Nodemon",version:"14.2.0",description:"Nodemon desc",dev:true}])
+	const [dependenciesToShow,setDependenciesToShow]=useState([{name:"Axios",version:"1.2.0",description:"Axios desc"},{name:"Nodemon",version:"14.2.0",description:"Nodemon desc"}])
+	const [selectedDependencies,setSelectedDependencies]=useState([]);
+	const [dependenciesToAdd,setDependenciesToAdd]=useState([]);
+	const onAddDependencyClick=()=>
+	{
+		setShowModal(true);
+	};
+	const onRemoveDependencyClick=dependency=>
+	{
+		delete dependency.dev;
+		console.log(dependency);
+		setSelectedDependencies(selectedDependencies.filter(each=>each.name!==dependency.name));
+		setDependenciesToShow([...dependenciesToShow,dependency]);
+	}
+	const onDependencySelected=dependency=>
+	{
+		setDependenciesToAdd([...dependenciesToAdd,{...dependency,dev:false}]);
+		setDependenciesToShow(dependenciesToShow.filter(each=>each.name!=dependency.name));
+	};
+	const addDependencySaveOnClick=()=>
+	{
+		setShowModal(false);
+		setSelectedDependencies([...selectedDependencies,...dependenciesToAdd]);
+		setDependenciesToAdd([]);
+	};
 	const onDownloadClick=()=>
 	{
 		const urlSearchParams=new URLSearchParams(projectDetails).toString();
@@ -22,7 +48,7 @@ function App() {
 		document.body.appendChild(anchor);
 		anchor.click();
 		document.body.removeChild(anchor);
-	}
+	};
 	return (
 		<div className="flex">
 			<div className="sidebar-left">
@@ -38,8 +64,8 @@ function App() {
 						<ProjectInput projectDetails={projectDetails} setProjectDetails={setProjectDetails}/> 
 					</div>
 					<div className="right overflow-auto">
-						<Modal/>
-						<Dependency selectedDependencies={selectedDependencies} setSelectedDependencies={setSelectedDependencies}/>
+						<Modal showModal={showModal} setShowModal={setShowModal} dependenciesToShow={dependenciesToShow} onDependencySelected={onDependencySelected} addDependencySaveOnClick={addDependencySaveOnClick}/>
+						<Dependency onRemoveDependencyClick ={onRemoveDependencyClick } onAddDependencyClick={onAddDependencyClick} selectedDependencies={selectedDependencies} setSelectedDependencies={setSelectedDependencies}/>
 					</div>
 				</div>
 				<Action onDownloadClick={onDownloadClick}/>
