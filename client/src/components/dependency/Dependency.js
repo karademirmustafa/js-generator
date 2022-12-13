@@ -1,16 +1,12 @@
 import React from 'react'
 import "./dependency.css"
-function Dependency({selectedDependencies,setSelectedDependencies}) {
-	const removeDependency=(name)=>
-	{
-		setSelectedDependencies(selectedDependencies.filter(each=>each.name!==name));
-	};
+function Dependency({selectedDependencies,onAddDependencyClick,onRemoveDependencyClick}) {
 	return (
 		<>
 			<div className="dependency-header">
 				<h2 className="title">Dependencies</h2> 
 				<div className="btn">
-					<span className="text-center font-medium">Add Dependencies</span>
+					<span onClick={e=>onAddDependencyClick()} className="text-center font-medium">Add Dependencies</span>
 					<i className="fa-solid fa-magnifying-glass"></i>
 				</div>
 			</div> 
@@ -24,7 +20,7 @@ function Dependency({selectedDependencies,setSelectedDependencies}) {
 								<span className="dependency-desc">{each.description}</span>
 								<div className="dependency-action">
 									<button className="dependency-icon border-blue-500 rounded text-white bg-blue-600"><i className="fa-solid fa-pen"/></button>
-									<button onClick={()=>removeDependency(each.name)} className="dependency-icon border-red-500 rounded text-white bg-red-600"><i className="fa-solid fa-trash-can"/></button>
+									<button onClick={()=>onRemoveDependencyClick(each)} className="dependency-icon border-red-500 rounded text-white bg-red-600"><i className="fa-solid fa-trash-can"/></button>
 								</div>
 							</div>
 						</li>)
