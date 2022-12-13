@@ -25,5 +25,8 @@ yarn-error.log*
 #zip 
 *.zip
 
-#ignore frontend_tmp
+#ignore frontend_tmp temporary
 /frontend_tmp
+
+#ignore backend_tmp temporary
+/backend_tmp
