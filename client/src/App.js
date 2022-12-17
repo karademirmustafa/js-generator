@@ -24,7 +24,6 @@ function App()
 	const onRemoveDependencyClick=dependency=>
 	{
 		delete dependency.dev;
-		console.log(dependency);
 		setSelectedDependencies(selectedDependencies.filter(each=>each.name!==dependency.name));
 		setDependenciesToShow([...dependenciesToShow,dependency]);
 	}
@@ -39,6 +38,12 @@ function App()
 		setSelectedDependencies([...selectedDependencies,...dependenciesToAdd]);
 		setDependenciesToAdd([]);
 	};
+	const addDependencyCancelOnClick=()=>
+	{
+		setShowModal(false);
+		setDependenciesToShow([...dependenciesToShow,...dependenciesToAdd]);
+		setDependenciesToAdd([]);
+	}
 	const onDownloadClick=()=>
 	{
 		const urlSearchParams=new URLSearchParams(projectDetails).toString();
@@ -64,7 +69,7 @@ function App()
 						<ProjectInput projectDetails={projectDetails} setProjectDetails={setProjectDetails}/> 
 					</div>
 					<div className="right overflow-auto">
-						<Modal showModal={showModal} setShowModal={setShowModal} dependenciesToShow={dependenciesToShow} onDependencySelected={onDependencySelected} addDependencySaveOnClick={addDependencySaveOnClick}/>
+						<Modal showModal={showModal} setShowModal={setShowModal} dependenciesToShow={dependenciesToShow} onDependencySelected={onDependencySelected} addDependencySaveOnClick={addDependencySaveOnClick} addDependencyCancelOnClick={addDependencyCancelOnClick}/>
 						<Dependency onRemoveDependencyClick ={onRemoveDependencyClick } onAddDependencyClick={onAddDependencyClick} selectedDependencies={selectedDependencies} setSelectedDependencies={setSelectedDependencies}/>
 					</div>
 				</div>
