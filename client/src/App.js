@@ -12,6 +12,7 @@ function App()
 {
 	const API_URL=process.env.REACT_APP_API;
 	const [isDarkModeOn,setIsDarkModeOn]=useState(false);
+	const [selectedProject, setSelectedProject] = useState("");
 	const [showModal, setShowModal]=useState(false);
 	const [projectDetails,setProjectDetails]=useState({name:"",description:"",version:"1.0"});
 	const [dependenciesToShow,setDependenciesToShow]=useState([{name:"Axios",version:"1.2.0",description:"Axios desc"},{name:"Nodemon",version:"14.2.0",description:"Nodemon desc"}])
@@ -24,7 +25,6 @@ function App()
 	const onRemoveDependencyClick=dependency=>
 	{
 		delete dependency.dev;
-		console.log(dependency);
 		setSelectedDependencies(selectedDependencies.filter(each=>each.name!==dependency.name));
 		setDependenciesToShow([...dependenciesToShow,dependency]);
 	}
@@ -39,11 +39,17 @@ function App()
 		setSelectedDependencies([...selectedDependencies,...dependenciesToAdd]);
 		setDependenciesToAdd([]);
 	};
+	const addDependencyCancelOnClick=()=>
+	{
+		setShowModal(false);
+		setDependenciesToShow([...dependenciesToShow,...dependenciesToAdd]);
+		setDependenciesToAdd([]);
+	}
 	const onDownloadClick=()=>
 	{
 		const urlSearchParams=new URLSearchParams(projectDetails).toString();
 		const anchor = document.createElement('a');
-		anchor.href = API_URL+"react?"+urlSearchParams;
+		anchor.href = API_URL+selectedProject.toLowerCase()+"?"+urlSearchParams;
 		anchor.download = "";
 		document.body.appendChild(anchor);
 		anchor.click();
@@ -59,16 +65,16 @@ function App()
 				<div className="main-layout">
 					<div className="left project">
 						<h2 className='title w-40'>Project </h2>
-						<ProjectSelect />
+						<ProjectSelect selectedProject={selectedProject} setSelectedProject={setSelectedProject}/>
 						<h2 className='title w-40'>Project Details </h2>
 						<ProjectInput projectDetails={projectDetails} setProjectDetails={setProjectDetails}/> 
 					</div>
 					<div className="right overflow-auto">
-						<Modal showModal={showModal} setShowModal={setShowModal} dependenciesToShow={dependenciesToShow} onDependencySelected={onDependencySelected} addDependencySaveOnClick={addDependencySaveOnClick}/>
+						<Modal showModal={showModal} setShowModal={setShowModal} dependenciesToShow={dependenciesToShow} onDependencySelected={onDependencySelected} addDependencySaveOnClick={addDependencySaveOnClick} addDependencyCancelOnClick={addDependencyCancelOnClick}/>
 						<Dependency onRemoveDependencyClick ={onRemoveDependencyClick } onAddDependencyClick={onAddDependencyClick} selectedDependencies={selectedDependencies} setSelectedDependencies={setSelectedDependencies}/>
 					</div>
 				</div>
-				<Action onDownloadClick={onDownloadClick}/>
+				<Action disabled={selectedProject==""} onDownloadClick={onDownloadClick}/>
 			</div>
 			<div className="sidebar-right">
 				<RightSidebar isDarkModeOn={isDarkModeOn} setIsDarkModeOn={setIsDarkModeOn}/>

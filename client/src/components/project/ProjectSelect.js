@@ -2,13 +2,12 @@ import React, {  useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 
-const Selector = () => {
+const Selector = ({selectedProject, setSelectedProject}) => {
 
   const [inputValue, setInputValue] = useState("");
-  const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
 
-  const technologies = [{name:"Backend"},{name:"Frontend"},{name:"Fullstack"}]
+  const technologies = [{name:"Node"},{name:"React"}]
   return (
 <div className="font-Poppins  flex items-center justify-start">
     
@@ -16,13 +15,13 @@ const Selector = () => {
       <div
         onClick={() => setOpen(!open)}
         className={`bg-green-500 text-white hover:bg-blue-500  w-full my-5 p-5 flex items-center justify-between border border-black rounded ${
-          !selected && "text-gray-700"
+          !selectedProject && "text-gray-700"
         }`}
       >
-        {selected
-          ? selected?.length > 25
-            ? selected?.substring(0, 25) + "..."
-            : selected
+        {selectedProject
+          ? selectedProject?.length > 25
+            ? selectedProject?.substring(0, 25) + "..."
+            : selectedProject
           : "Select Technology"}
         <BiChevronDown size={20} className={`${open && "rotate-180"} text-white`} />
       </div>
@@ -46,7 +45,7 @@ const Selector = () => {
             key={technology?.name}
             className={`p-2 text-sm hover:bg-sky-600 hover:text-white
             ${
-                technology?.name?.toLowerCase() === selected?.toLowerCase() &&
+                technology?.name?.toLowerCase() === selectedProject?.toLowerCase() &&
               "bg-sky-600 text-white"
             }
             ${
@@ -55,8 +54,8 @@ const Selector = () => {
                 : "hidden"
             }`}
             onClick={() => {
-              if (technology?.name?.toLowerCase() !== selected.toLowerCase()) {
-                setSelected(technology?.name);
+              if (technology?.name?.toLowerCase() !== selectedProject.toLowerCase()) {
+                setSelectedProject(technology?.name);
                 setOpen(false);
                 setInputValue("");
               }
