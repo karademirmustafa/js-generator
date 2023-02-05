@@ -8,13 +8,17 @@ app.use(express.json());
 const createFrontend = require("./services/frontend-service");
 const createBackend = require("./services/backend-service");
 app.get("/react", async (req,res)=> {
-const {name,version,description} = req.query;
+const {name,version,description,dependencies,devDependencies} = req.query;
 
 const projectDetails = {
     name:name ? name : "react-app",
     version:version ? version : "0.0.1",
-    description:description ? description : ""
+    description:description ? description : "",
+    dependencies,
+    devDependencies
 }
+// dependencies
+// devDependencies query olarak al node ve reacta ekle tşk
 createFrontend(projectDetails,(file) => {res.download(path.join(__dirname, file))});
 })
 
