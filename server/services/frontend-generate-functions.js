@@ -1,5 +1,5 @@
 const fs = require("fs");
-
+const {dependenciesSplit} = require("../utils/dependencies");
 function generateIndex(path) {
   const data = `
   import React from 'react';
@@ -81,9 +81,10 @@ REACT_APP_BACKEND_URL=http://localhost:5000`;
 const generatePackage = (
   path,
   projectDetails,
-  dependencies,
-  devDependencies
 ) => {
+  const dependencyPackages = dependenciesSplit(projectDetails?.dependencies) ?? [];
+  const devDependencyPackages = dependenciesSplit(projectDetails?.devDependencies) ?? [];
+console.log(dependencyPackages,"dependencypackages")
   const data =
     `
 {
@@ -97,8 +98,13 @@ const generatePackage = (
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1"
-  },
+    "react-scripts": "^5.0.1",
+  `+
+    dependencyPackages?.map(dependency => {
+      return `\t"${dependency.name}":"^${dependency.version}"\n`
+    }) +
+  `},
+  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -122,9 +128,15 @@ const generatePackage = (
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+"devDependencies": {
+  `+
+  devDependencyPackages?.map(dependency => {
+    return `\t"${dependency.name}":"^${dependency.version}"\n`
+  }) +
+  `
 }
-
+}
 `;
   fs.writeFileSync(`${path}/package.json`, data);
 };
