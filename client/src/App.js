@@ -47,7 +47,19 @@ function App()
 	}
 	const onDownloadClick=()=>
 	{
-		const urlSearchParams=new URLSearchParams(projectDetails).toString();
+		const dependencies=[];
+		const devDependencies=[];
+		for(let key in selectedDependencies)
+		{
+			const selectedDependency=selectedDependencies[key];
+			const tmp=selectedDependency.name+"_"+selectedDependency.version;
+			if(selectedDependency.dev)
+				devDependencies.push(tmp);
+			else
+				dependencies.push(tmp);
+		}
+		const urlSearchParams="name="+projectDetails.name+"&description="+projectDetails.description
+		+"&version="+projectDetails.version+"&dependencies="+dependencies.toString()+"&devDependencies="+devDependencies;
 		const anchor = document.createElement('a');
 		anchor.href = API_URL+selectedProject.toLowerCase()+"?"+urlSearchParams;
 		anchor.download = "";
